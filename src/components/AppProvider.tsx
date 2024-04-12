@@ -1,73 +1,64 @@
-import { createContext, useEffect, useState } from 'react';
-import {
-  UploadOutlined,
-  UserOutlined,
-  VideoCameraOutlined,
-  DashboardOutlined,
-} from '@ant-design/icons';
-import Dashboard from '../pages/dashboard';
-import MedicineCategories from '../pages/medicine/categories';
-import MedicineList from '../pages/medicine/list';
-import ArticleCategories from '../pages/articles/categories';
-import ArticleList from '../pages/articles/list';
-import Users from '../pages/user';
+import { createContext, useState } from "react";
+import { UserOutlined, DashboardOutlined } from "@ant-design/icons";
+import Dashboard from "../pages/dashboard";
+import User from "../pages/user";
 
 export const context = createContext<any>({});
 
 // 如果需要再加新的页面，只需要写好组件之后 改这个数组就好
 const sideMenuData = [
   {
-    key: '/admin/dashboard',
+    key: "/admin/dashboard",
     icon: <DashboardOutlined />,
     element: <Dashboard />,
-    label: '看板',
+    label: "看板",
   },
+  // {
+  //   key: '/admin/medicine',
+  //   icon: <VideoCameraOutlined />,
+  //   label: '药品管理',
+  //   roles: ['admin', 'editor'],
+  //   children: [
+  //     {
+  //       label: '药品分类',
+  //       key: '/admin/medicine/categories',
+  //       element: <MedicineCategories />,
+  //       roles: ['admin'],
+  //     },
+  //     {
+  //       label: '药品信息',
+  //       key: '/admin/medicine/list',
+  //       element: <MedicineList />,
+  //       roles: ['admin', 'editor'],
+  //     },
+  //   ],
+  // },
+  // {
+  //   key: '/admin/articles',
+  //   icon: <UploadOutlined />,
+  //   label: '文章管理',
+  //   roles: ['admin', 'editor'],
+  //   children: [
+  //     {
+  //       label: '文章分类',
+  //       key: '/admin/articles/categories',
+  //       element: <ArticleCategories />,
+  //       roles: ['admin', 'editor'],
+  //     },
+  //     {
+  //       label: '文章信息',
+  //       key: '/admin/articles/list',
+  //       element: <ArticleList />,
+  //       roles: ['admin', 'editor'],
+  //     },
+  //   ],
+  // },
   {
-    key: '/admin/medicine',
-    icon: <VideoCameraOutlined />,
-    label: '药品管理',
-    roles: ['admin', 'editor'],
-    children: [
-      {
-        label: '药品分类',
-        key: '/admin/medicine/categories',
-        element: <MedicineCategories />,
-        roles: ['admin'],
-      },
-      {
-        label: '药品信息',
-        key: '/admin/medicine/list',
-        element: <MedicineList />,
-        roles: ['admin', 'editor'],
-      },
-    ],
-  },
-  {
-    key: '/admin/articles',
-    icon: <UploadOutlined />,
-    label: '文章管理',
-    roles: ['admin', 'editor'],
-    children: [
-      {
-        label: '文章分类',
-        key: '/admin/articles/categories',
-        element: <ArticleCategories />,
-        roles: ['admin', 'editor'],
-      },
-      {
-        label: '文章信息',
-        key: '/admin/articles/list',
-        element: <ArticleList />,
-        roles: ['admin', 'editor'],
-      },
-    ],
-  },
-  {
-    key: '/admin/users',
+    key: "/admin/user",
     icon: <UserOutlined />,
-    label: '会员信息',
-    element: <Users />,
-    roles: ['admin', 'kf'],
+    label: "会员信息",
+    element: <User />,
+    roles: ["admin", "kf"],
   },
 ];
 
@@ -123,7 +114,7 @@ function AppProvider({ children }: any) {
   // 初始化的时候从本地存储获取角色信息
   let defaultMenus = [];
   let defaultRoutes = [];
-  const oldRole = sessionStorage.getItem('role');
+  const oldRole = sessionStorage.getItem("role");
   if (oldRole) {
     defaultMenus = findRoles(oldRole);
     defaultRoutes = flatRoutes(defaultMenus);
@@ -133,7 +124,7 @@ function AppProvider({ children }: any) {
 
   // 根据当前的角色生成路由数组和侧边栏数组
   const resetMenus = (role: string) => {
-    sessionStorage.setItem('role', role);
+    sessionStorage.setItem("role", role);
     // 此处重置菜单和路由数据
     const tmpMenu = findRoles(role);
     setMenus(tmpMenu);

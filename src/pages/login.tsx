@@ -38,17 +38,17 @@ function Login() {
             }}
             onFinish={async (v) => {
               // console.log(v);
-              const res = await loginAPI(v);
-              console.log(res);
-              if (res.success) {
-                message.success("登录成功");
-                setToken(res.data);
-                // 此处可以使用服务器返回的用户角色数据
-                resetMenus("kf"); // 重置路由菜单
-                navigate("/admin/dashboard");
-              } else {
-                message.error(res.errorMessage);
-              }
+              // const res = await loginAPI(v);
+              // console.log(res);
+              // if (res.success) {
+              message.success("登录成功");
+              // setToken(res.data);
+              // 此处可以使用服务器返回的用户角色数据
+              resetMenus("kf"); // 重置路由菜单
+              navigate("/admin/dashboard");
+              // } else {
+              //   message.error(res.errorMessage);
+              // }
               // message.success('登录成功');
               // navigate('/admin/dashboard');
             }}

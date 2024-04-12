@@ -9,7 +9,7 @@ function App() {
   return (
     <MyLayout>
       <Routes>
-        {routes.map((item: any) => (
+        {routes.map((item: unknown) => (
           <Route
             key={item.key}
             path={item.key?.replace("/admin/", "")}

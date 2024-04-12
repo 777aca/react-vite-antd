@@ -1,5 +1,5 @@
 import axios from 'axios';
-// @ts-ignore
+
 import NProgress from 'nprogress';
 import 'nprogress/nprogress.css';
 import { getToken, serverUrl } from './tools';
@@ -14,7 +14,7 @@ const instance = axios.create({
 instance.interceptors.request.use(
   function (config) {
     // Do something before request is sent
-    // @ts-ignore
+    
     config.headers.token = getToken();
     NProgress.start(); // 启动loading
     return config;

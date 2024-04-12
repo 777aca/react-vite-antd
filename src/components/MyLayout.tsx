@@ -1,12 +1,5 @@
-import {
-  MenuFoldOutlined,
-  MenuUnfoldOutlined,
-  UploadOutlined,
-  UserOutlined,
-  VideoCameraOutlined,
-  DashboardOutlined,
-} from "@ant-design/icons";
-import { Breadcrumb, Dropdown, Layout, Menu, message } from "antd";
+import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
+import { Breadcrumb, Dropdown, Layout, Menu } from "antd";
 import React, { useContext, useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { defaultImg as logo } from "../utils/tools";
@@ -110,10 +103,10 @@ const MyLayout = ({ children }: any) => {
           <Dropdown
             menu={{
               items: [
-                {
-                  label: "个人中心",
-                  key: "userCenter",
-                },
+                // {
+                //   label: "个人中心",
+                //   key: "userCenter",
+                // },
                 {
                   label: (
                     <span
@@ -152,13 +145,9 @@ const MyLayout = ({ children }: any) => {
             flex: 1,
           }}
         >
-          <Breadcrumb>
-            {breadcrumbs.map((item: any) => (
-              <Breadcrumb.Item key={item.key}>{item.label}</Breadcrumb.Item>
-            ))}
-
-            {/* <Breadcrumb.Item>Ant Design</Breadcrumb.Item> */}
-          </Breadcrumb>
+          <Breadcrumb
+            items={breadcrumbs.map((item: unknown) => ({ title: item.label }))}
+          ></Breadcrumb>
           {children}
         </Content>
       </Layout>
